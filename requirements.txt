@@ -1,0 +1,5 @@
+fact-sphere
+randfacts
+animalapi
+discord.py
+dotenv-python
