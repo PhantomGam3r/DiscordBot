@@ -2,7 +2,6 @@
 import os
 
 import discord
-from dotenv import load_dotenv
 import fact_sphere, asyncio
 import animalapi as animal_facts
 import random, requests
@@ -10,8 +9,7 @@ from chuck_facts_list import chuck_facts
 from sun_tzu import sun_tzu_quotes
 import randfacts
 
-load_dotenv()
-TOKEN = os.getenv('DISCORD_TOKEN')
+TOKEN = os.environ["DISCORD_TOKEN"]
 
 client = discord.Client()
 
