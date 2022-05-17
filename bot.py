@@ -141,6 +141,8 @@ async def on_ready():
     while True:
         try:
             for fact_channel in fact_channels:
+                # Print where the fact is being sent, server and channel
+                print(f"\nSending fact to {fact_channel.guild.name}/{fact_channel.name}")
                 fact = get_random_fact()
                 # send embed with fact and image if there is one and delete after x seconds
                 fact_data = get_data_from_fact(fact)
@@ -158,8 +160,11 @@ async def on_ready():
 # upon bot joining a new server, add the fact channels of it to the list of fact channels
 @client.event
 async def on_guild_join(guild):
-    for channel in guild.channels:
-        if "fact" in channel.name.lower():
-            fact_channels.append(channel)
+    fact_channels = []
+    for server in client.guilds:
+        for channel in server.channels:
+            if "fact" in channel.name.lower():
+                fact_channels.append(channel)
+                print(f"Found channel {channel.name} in {server.name}")
 
 client.run(TOKEN)
